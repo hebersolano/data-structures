@@ -42,10 +42,19 @@ class Stack {
   }
 }
 
-/* Sets */
-class MySet {
-  constructor() {
-    this.collection = [];
+//! Sets
+export class MySet {
+  #collection = [];
+
+  constructor(value, ...values) {
+    if (value instanceof Array && value.length > 0) {
+      value.forEach((e) => this.add(e));
+    } else {
+      this.add(value);
+    }
+    if (values.length > 0) {
+      values.forEach((e) => this.add(e));
+    }
   }
 
   has(element) {
@@ -77,6 +86,47 @@ class MySet {
     return this.collection.length;
   }
 
-  // this method will return the union of two sets
-  union() {}
+  union(otherSet) {
+    let unionSet = new MySet();
+    let firstSet = this.values();
+    let secondSet = otherSet.values();
+
+    firstSet.forEach((element) => unionSet.add(element));
+    secondSet.forEach((element) => unionSet.add(element));
+
+    return unionSet;
+  }
+
+  intersection(otherSet) {
+    let intersectionSet = new MySet();
+    let firstSet = this.values;
+
+    firstSet.forEach((element) => {
+      if (otherSet.has(e)) intersectionSet.add(element);
+    });
+
+    return intersectionSet;
+  }
+
+  difference(otherSet) {
+    let differenceSet = new MySet();
+    let firstSet = this.values();
+
+    firstSet.forEach((element) => {
+      if (!otherSet.has(element)) differenceSet.add(element);
+    });
+
+    return differenceSet;
+  }
+
+  subset(otherSet) {
+    let firstSet = this.values;
+
+    return firstSet.every((value) => otherSet.has(value));
+  }
+}
+
+//! Queue
+class Queue {
+  #collection = [];
 }
