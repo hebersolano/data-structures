@@ -1,0 +1,4 @@
+//! Queue
+class Queue {
+  #collection = [];
+}
