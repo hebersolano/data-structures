@@ -1,5 +1,7 @@
+import sort from "./helpers/quicksort.js";
+
 //! Queue
-class Queue {
+export class Queue {
   #collection = [];
 
   print() {
@@ -29,28 +31,33 @@ class Queue {
   }
 }
 
-class PriorityQueue {
-  #collection;
+export class PriorityQueue {
+  #collection = [];
 
   print() {
     console.log(this.#collection);
   }
   enqueue(element) {
-    if (this.isEmpty()) {
-      this.#collection.push(element);
-    } else {
-      let added = false;
-      for (let i = 0; i < this.#collection.length; i++) {
-        if (element[1] < this.#collection[i][1]) {
-          //checking priorities
-          this.#collection.splice(i, 0, element);
-          added = true;
-          break;
-        }
-      }
+    this.#collection.push(element);
+    sort(this.#collection);
+    // if (this.isEmpty()) {
+    //   this.#collection.push(element);
+    // } else {
+    //   let added = false;
+    //   for (let i = 0; i < this.#collection.length; i++) {
+    //     if (element[1] < this.#collection[i][1]) {
+    //       //checking priorities
+    //       this.#collection.splice(i, 0, element);
+    //       added = true;
+    //       break;
+    //     }
+    //   }
 
-      if (!added) this.#collection.push(element);
-    }
+    //   if (!added) this.#collection.push(element);
+    // }
+  }
+  sort() {
+    this.#collection = sort(this.#collection);
   }
   dequeue() {
     let value = this.#collection.shift();
