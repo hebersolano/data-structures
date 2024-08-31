@@ -8,9 +8,13 @@ class Node {
   }
 }
 
-class BST {
-  constructor() {
+export default class BST {
+  constructor(...args) {
     this.root = null;
+    args.map((arg) => {
+      if (typeof arg !== "number") return;
+      this.add(arg);
+    });
   }
 
   add(data) {
@@ -78,18 +82,40 @@ class BST {
 
   isPresent(data) {
     return Boolean(this.find(data)?.data);
+  }
 
-    // let current = this.root;
-    // while (current) {
-    //   if (data === current.data) return true;
+  remove(data) {
+    this.root = removeNode(this.root, data);
 
-    //   if (data < current.data) {
-    //     current = current.left;
-    //   } else {
-    //     current = current.right;
-    //   }
-    // }
+    function removeNode(node, data) {
+      if (node === null) return null;
+      if (node.data === data) {
+        //node has no children
+        if (node.left === null && node.right === null) return null;
 
-    // return false;
+        //node has no left child
+        if (node.left === null) return node.right;
+
+        //node has no right child
+        if (node.right === null) return node.left;
+
+        //node has two children
+        let tempNode = node.right;
+        while (tempNode.left !== null) {
+          tempNode = tempNode.left;
+        }
+
+        node.data = tempNode.data;
+        node.right = removeNode(node.right, tempNode.data);
+
+        return node;
+      } else if (node.data < data) {
+        node.left = removeNode(node.left, data);
+        return node;
+      } else {
+        node.right = removeNode(node.right, data);
+        return node;
+      }
+    }
   }
 }
