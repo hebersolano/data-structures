@@ -17,7 +17,10 @@ pq.enqueue(["Heber Solano", 4]);
 // pq.print();
 
 //BINARY SEARCH TREE
-const myBST = new BST(8, 6, 1, 0, 2, 4, 32, 54, 44, 122, 54, 1, 2);
-console.log(myBST.findMin());
-console.log(myBST.findMax());
-console.log(myBST.isPresent(54));
+const myBST = new BST(9, 4, 17, 3, 6, 22, 5, 7, 20, 10);
+// console.log(myBST.findMin());
+// console.log(myBST.findMax());
+// console.log(myBST.isPresent(54));
+console.log(myBST.findMinHeight(), myBST.findMaxHeight(), myBST.isBalance());
+const BST2 = new BST(8, 6, 1, 2, 4, 0);
+console.log(BST2.findMinHeight(), BST2.findMaxHeight(), BST2.isBalance());
