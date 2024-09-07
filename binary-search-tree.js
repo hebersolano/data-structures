@@ -11,10 +11,13 @@ class Node {
 export default class BST {
   constructor(...args) {
     this.root = null;
-    args.map((arg) => {
-      if (typeof arg !== "number") return;
-      this.add(arg);
-    });
+
+    if (args.length > 0) {
+      args.map((arg) => {
+        if (typeof arg !== "number") return;
+        this.add(arg);
+      });
+    }
   }
 
   add(data) {
@@ -146,5 +149,62 @@ export default class BST {
 
   isBalance() {
     return this.findMinHeight() >= this.findMaxHeight() - 1;
+  }
+
+  inOrder() {
+    if (this.root === null) return null;
+
+    const result = new Array();
+    function traverseInOrder(node) {
+      node.left && traverseInOrder(node.left);
+      result.push(node.data);
+      node.right && traverseInOrder(node.right);
+    }
+    traverseInOrder(this.root);
+    return result;
+  }
+
+  preOrder() {
+    if (this.root == null) return null;
+
+    const result = new Array();
+    function traversePreOrder(node) {
+      result.push(node.data);
+      node.left && traversePreOrder(node.left);
+      node.right && traversePreOrder(node.right);
+    }
+    traversePreOrder(this.root);
+    return result;
+  }
+
+  postOrder() {
+    if (this.root == null) return null;
+
+    const result = new Array();
+    function traversePostOrder(node) {
+      node.left && traversePostOrder(node.left);
+      node.right && traversePostOrder(node.right);
+      result.push(node.data);
+    }
+    traversePostOrder(this.root);
+    return result;
+  }
+
+  levelOrder() {
+    if (this.root === null) return null;
+
+    const result = [];
+    const Q = [];
+
+    Q.push(this.root);
+    while (Q.length > 0) {
+      let node = Q.shift();
+      result.push(node.data);
+
+      if (node.left) Q.push(node.left);
+      if (node.right) Q.push(node.right);
+    }
+
+    return result;
   }
 }
