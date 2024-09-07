@@ -1,4 +1,5 @@
 import BST from "./binary-search-tree.js";
+import { hash } from "./has-table.js";
 import { PriorityQueue } from "./queue-data-structure.js";
 import MySet from "./set-data-structure.js";
 
@@ -28,3 +29,4 @@ console.log(myBST.levelOrder());
 // console.log(myBST.findMinHeight(), myBST.findMaxHeight(), myBST.isBalance());
 const BST2 = new BST(8, 6, 1, 2, 4, 0);
 console.log(BST2.findMinHeight(), BST2.findMaxHeight(), BST2.isBalance());
+console.log(hash("string", 1));
