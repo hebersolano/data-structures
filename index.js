@@ -30,3 +30,4 @@ console.log(myBST.levelOrder());
 const BST2 = new BST(8, 6, 1, 2, 4, 0);
 console.log(BST2.findMinHeight(), BST2.findMaxHeight(), BST2.isBalance());
 console.log(hash("string", 1));
+console.log(pq);
