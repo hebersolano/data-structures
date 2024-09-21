@@ -7,7 +7,7 @@ export function hash(string, max) {
   return hash % max;
 }
 
-class HashTable {
+export class HashTable {
   #storage = [];
   #storageLimit = 4;
 
@@ -49,5 +49,26 @@ class HashTable {
 
   remove(key) {
     let index = this.#getIndex(key);
+    if (this.#storage[index].length === 1 && this.#storage[index][0][0] === key) {
+      delete this.#storage[index];
+    } else {
+      for (let i = 0; i < this.#storage[index].length; i++) {
+        if (this.#storage[index][i][0] === key) delete this.#storage[index][i];
+      }
+    }
   }
+
+  lookup(key) {
+    let index = this.#getIndex(key);
+    if (this.#storage[index] === undefined) {
+      return undefined;
+    } else {
+      for (let i = 0; i < this.#storage[index].length; i++) {
+        if (this.#storage[index][i][0] === key) {
+          return this.#storage[index][i][1];
+        }
+      }
+    }
+  }
+  // class end
 }
