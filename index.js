@@ -1,5 +1,6 @@
 import BST from "./binary-search-tree.js";
 import { HashTable, hash } from "./has-table.js";
+import { LinkList } from "./link-list.js";
 import { PriorityQueue } from "./queue-data-structure.js";
 import MySet from "./set-data-structure.js";
 
@@ -33,11 +34,24 @@ import MySet from "./set-data-structure.js";
 // console.log(pq);
 
 // HASH TABLE
-let ht = new HashTable();
-ht.add("beau", "person");
-ht.add("fido", "dog");
-ht.add("rex", "dinosaur");
-ht.add("tux", "penguin");
-console.log(ht);
-console.log(ht.lookup("tux"));
-ht.print();
+// let ht = new HashTable();
+// ht.add("beau", "person");
+// ht.add("fido", "dog");
+// ht.add("rex", "dinosaur");
+// ht.add("tux", "penguin");
+// console.log(ht);
+// console.log(ht.lookup("tux"));
+// ht.print();
+
+//LINK LIST
+const ll = new LinkList();
+ll.add("kitten");
+ll.add("puppy");
+ll.add("dog");
+ll.add("cat");
+ll.add("fish");
+console.log(ll.size());
+// console.log(ll.remove("cat"));
+console.log(ll.size());
+console.log(ll);
+console.log(ll.removeAt(3));

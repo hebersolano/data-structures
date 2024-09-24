@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class LinkList {
+export class LinkList {
   #length = 0;
   #head = null;
 
@@ -20,6 +20,7 @@ class LinkList {
 
   add(element) {
     let node = new Node(element);
+    let currentNode;
     if (this.#head === null) {
       this.#head = node;
     } else {
@@ -33,7 +34,9 @@ class LinkList {
     this.#length++;
   }
 
-  remove() {
+  remove(element) {
+    if (this.#head === null) return false;
+
     let currentNode = this.#head;
     let previousNode;
     if (currentNode.element === element) {
@@ -47,6 +50,8 @@ class LinkList {
       previousNode.next = currentNode.next;
     }
     this.#length--;
+
+    return currentNode.element;
   }
 
   isEmpty() {
@@ -68,6 +73,7 @@ class LinkList {
   }
 
   elementAt(index) {
+    if (typeof index !== "number") throw new Error("index must be a number");
     let currentNode = this.#head;
     let count = 0;
     while (count < index) {
@@ -78,8 +84,9 @@ class LinkList {
   }
 
   addAt(index, element) {
-    let node = new Node(element);
+    if (typeof index !== "number") throw new Error("index must be a number");
 
+    let node = new Node(element);
     let currentNode = this.#head;
     let previousNode;
     let currentIndex = 0;
@@ -99,5 +106,30 @@ class LinkList {
       previousNode.next = node;
     }
     this.#length++;
+  }
+
+  removeAt(index) {
+    if (typeof index !== "number") throw new Error("index must be a number");
+
+    let currentNode = this.#head;
+    let previousNode;
+    let currentIndex = 0;
+
+    if (index < 0 || index >= this.#length) {
+      return null;
+    }
+    if (index === 0) {
+      this.#head = currentNode.next;
+    } else {
+      while (currentIndex < index) {
+        currentIndex++;
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+      previousNode.next = currentNode.next;
+    }
+    this.#length--;
+
+    return currentNode.element;
   }
 }
