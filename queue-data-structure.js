@@ -26,7 +26,7 @@ export class Queue {
     return this.#collection.length;
   }
 
-  isEmpty() {
+  get isEmpty() {
     return this.#collection.length === 0;
   }
 }
@@ -69,7 +69,7 @@ export class PriorityQueue {
   get size() {
     return this.#collection.length;
   }
-  isEmpty() {
+  get isEmpty() {
     return this.#collection.length === 0;
   }
 }
